@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=El+Messiri&display=swap" rel="stylesheet">
+
+    <title>!</title>
+    <style>
+        body {
+            /*font-family: 'Raleway', sans-serif;*/
+            background-color: #4D74DB;
+            font-family: 'El Messiri', sans-serif;
+        }
+
+        .card {
+            border-radius: 15px;
+        }
+
+        .shadow {
+            -moz-box-shadow: 3px 3px 5px 6px #8c8c8c;
+            -webkit-box-shadow: 3px 3px 5px 6px #8c8c8c;
+            box-shadow: 3px 3px 5px 6px #8c8c8c;
+        }
+
+        img {
+            overflow: hidden;
+        }
+
+        .grow {
+            transition: all 0.2s ease-in-out;
+        }
+
+        .grow:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="app">
+
+        <div v-show="ediaBill">
+            <h3 class="text-center mt-5 text-white">اختار المبلغ الي تشوفه مناسب</h3>
+            <div class="row mt-3 justify-content-center">
+                <div class="col-md-2 col-4">
+                    <div @click="theChosenEdia" class="card shadow bg-secondary">
+                        <img :src="thousand" alt="" class="w-100 grow">
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-4">
+                    <div @click="theChosenEdia" class="card shadow bg-secondary">
+                        <img :src="twoHundredAndFifty" alt="" class="w-100 grow">
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div @click="theChosenEdia" class="card shadow bg-secondary">
+                        <img :src="fiveHundred" alt="" class="w-100 grow">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div v-show="showForm">
+            <h3 class="text-center mt-5 text-white">ثاني خطوة دخل معلومات صديقك</h3>
+            <div class="row my-3 justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div>
+                                <div class="card mb-3">
+                                    <div class="row justify-content-center">
+                                        <div class="col-auto">
+                                            <img :src="image" alt="" class="w-100">
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-4">
+                                            <label class="text-center" for="exampleFormControlFile1">هنا خلي صورة
+                                                الشخص</label>
+                                            <input name="image" type="file" @change="onFileChange"
+                                                   class="form-control-file" id="exampleFormControlFile1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input v-model="name" type="text" class="form-control" id="exampleInputEmail1"
+                                           aria-describedby="emailHelp" placeholder="اسم الشخص الي تريد تنطي عيدية">
+                                </div>
+                                <div class="form-group">
+                                    <input v-model="reason" type="text" class="form-control" id="exampleInputPassword1"
+                                           placeholder="ليش تشوف هذا الشخص يستاهل العيدية؟">
+                                </div>
+                                <button @click="showAfterForm" class="btn btn-outline-primary btn-sm">دز العيدية
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div v-show="afterForm">
+            <h3 class="text-center mt-5 text-white">و هسا عيدية صديقك جاهزة وتكدر تروح تراويلهيا</h3>
+            <div class="row my-3 justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6 col-6">
+                                    <img :src="image" alt="" class="w-100">
+                                </div>
+                            </div>
+                            <h4 class="text-center mt-2">{{name}}</h4>
+                            <h5 class="text-center mt-2">{{reason}}</h5>
+
+                            <div class="row mt-2 mx-5 justify-content-center">
+                                <div class="col">
+                                    <img :src="edia" alt="" class="w-50">
+                                </div>
+                                <div class="col">
+                                    <h5 class="text-center ">و هاي العيدية</h5>
+                                    <h5 class="text-center">:')</h5>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            thousand: "https://i.ibb.co/bW5fMJh/1000.jpg",
+            twoHundredAndFifty: "https://i.ibb.co/RYspBp1/250.jpg",
+            fiveHundred: "https://i.ibb.co/tZB8XSG/500.jpg",
+
+            image: "",
+            name: "",
+            reason: "",
+            edia: "",
+
+            ediaBill: true,
+            showForm: null,
+            afterForm: null,
+        },
+        methods: {
+            theChosenEdia(e) {
+                this.ediaBill = false;
+                this.showForm = true;
+                this.edia = e.target.src
+            },
+            showAfterForm() {
+                this.showForm = false;
+                this.afterForm = true;
+            },
+
+
+            onFileChange(e) {
+                console.log(e);
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                var image = new Image();
+                var reader = new FileReader();
+                var vm = this;
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+        },
+
+    })
+</script>
+</body>
+</html>
